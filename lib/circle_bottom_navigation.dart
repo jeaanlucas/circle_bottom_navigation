@@ -212,7 +212,21 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
-                      
+                      SizedBox(
+                        height: (
+                          this.widget.circleSize +
+                          this.widget.circleOutline +
+                          this.widget.shadowAllowance
+                        ),
+                        width: (
+                          this.widget.circleSize +
+                          this.widget.circleOutline +
+                          this.widget.shadowAllowance
+                        ),
+                        child: ClipRect(
+                          
+                        ),
+                      ),
                     ],
                   ),
                 ),
