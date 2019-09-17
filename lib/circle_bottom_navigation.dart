@@ -260,7 +260,16 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                           painter: HalfPainter(barBackgroundColor),
                         ),
                       ),
-                      
+                      SizedBox(
+                        height: this.widget.circleSize,
+                        width: this.widget.circleSize,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: circleColor,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
