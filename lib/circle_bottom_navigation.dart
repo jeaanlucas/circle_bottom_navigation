@@ -26,8 +26,8 @@ class CircleBottomNavigation extends StatefulWidget {
   CircleBottomNavigation({
     @required this.tabs,
     @required this.onTabChangedListener,
+    @required this.initialSelection,
     this.key,
-    this.initialSelection = 0,
     this.circleColor,
     this.activeIconColor,
     this.inactiveIconColor,
