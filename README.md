@@ -31,7 +31,7 @@ bottomNavigationBar: CircleBottomNavigation(
 
 ## Attributes
 ### required
-**initialSelection** -> The number of you page want to start<br/>
+**initialSelection** -> The number of your main page<br/>
 **tabs** -> List of `TabData` objects<br/>
 **onTabChangedListener** -> Function to handle a tap on a tab, receives `int position`
 
