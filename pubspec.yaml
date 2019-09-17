@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   vector_math: ^2.0.8
+  analyzer: ^0.38.2
 
 dev_dependencies:
   flutter_test:
