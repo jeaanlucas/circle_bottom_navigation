@@ -203,6 +203,20 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                 _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
                 1,
               ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: 15,
+                ),
+                child: GestureDetector(
+                  onTap: this.widget.tabs[currentSelected].onclick,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
