@@ -116,7 +116,9 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   }
 
   _setSelected(UniqueKey key) {
-    int selected = widget.tabs.indexWhere((tabData) => tabData.key == key);
+    int selected = widget.tabs.indexWhere(
+      (tabData) => tabData.key == key
+    );
 
     if (mounted) {
       setState(() {
@@ -145,8 +147,9 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
 
   _callbackFunction(UniqueKey key) {
     int selected = this.widget.tabs.indexWhere(
-            (tabData) => tabData.key == key
+      (tabData) => tabData.key == key
     );
+
     this.widget.onTabChangedListener(selected);
     _setSelected(key);
     _initAnimationAndStart(_circleAlignX, 1);
@@ -215,16 +218,12 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                     alignment: Alignment.center,
                     children: <Widget>[
                       SizedBox(
-                        height: (
-                          this.widget.circleSize +
+                        height: this.widget.circleSize +
                           this.widget.circleOutline +
-                          this.widget.shadowAllowance
-                        ),
-                        width: (
-                          this.widget.circleSize +
+                          this.widget.shadowAllowance,
+                        width: this.widget.circleSize +
                           this.widget.circleOutline +
-                          this.widget.shadowAllowance
-                        ),
+                          this.widget.shadowAllowance,
                         child: ClipRect(
                           clipper: HalfClipper(),
                           child: Container(
