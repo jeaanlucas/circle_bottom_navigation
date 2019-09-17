@@ -268,6 +268,21 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                             shape: BoxShape.circle,
                             color: circleColor,
                           ),
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                              0.0,
+                            ),
+                            child: AnimatedOpacity(
+                              duration: Duration(
+                                milliseconds: ANIM_DURATION ~/ 5,
+                              ),
+                              opacity: _circleIconAlpha,
+                              child: Icon(
+                                activeIcon,
+                                color: activeIconColor,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
