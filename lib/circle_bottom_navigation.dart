@@ -226,6 +226,30 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                         ),
                         child: ClipRect(
                           clipper: HalfClipper(),
+                          child: Container(
+                            child: Center(
+                              child: Container(
+                                width: (
+                                  this.widget.circleSize +
+                                  this.widget.circleOutline
+                                ),
+                                height: (
+                                  this.widget.circleSize +
+                                  this.widget.circleOutline
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 8,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
