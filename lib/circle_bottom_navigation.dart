@@ -43,10 +43,49 @@ class CircleBottomNavigation extends StatefulWidget {
   _CircleBottomNavigationState createState() => _CircleBottomNavigationState();
 }
 
-class _CircleBottomNavigationState extends State<CircleBottomNavigation> {
+class _CircleBottomNavigationState extends State<CircleBottomNavigation>
+    with TickerProviderStateMixin, RouteAware {
+  IconData nextIcon = Icons.search;
+  IconData activeIcon = Icons.search;
+
+  int currentSelected = 0;
+  double _circleAlignX = 0;
+  double _circleIconAlpha = 1;
+
+  Color circleColor;
+  Color activeIconColor;
+  Color inactiveIconColor;
+  Color barBackgroundColor;
+  Color textColor;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _setSelected(widget.tabs[widget.initialSelection].key);
+  }
+
+  _setSelected(UniqueKey key) {
+    int selected = widget.tabs.indexWhere((tabData) => tabData.key == key);
+
+    if (mounted) {
+      setState(() {
+        currentSelected = selected;
+        _circleAlignX = -1 + (2 / (widget.tabs.length - 1) * selected);
+        nextIcon = widget.tabs[selected].iconData;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack();
   }
 }
 
