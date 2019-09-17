@@ -57,19 +57,19 @@ class _MyHomePageState extends State<MyHomePage> {
         textColor: Colors.black,
         tabs: [
           TabData(
-            iconData: Icons.home,
+            icon: Icons.home,
             title: "Home",
           ),
           TabData(
-            iconData: Icons.history,
+            icon: Icons.history,
             title: "History",
           ),
           TabData(
-            iconData: Icons.search,
+            icon: Icons.search,
             title: "Search",
           ),
           TabData(
-            iconData: Icons.alarm,
+            icon: Icons.alarm,
             title: "Alarm",
           ),
         ],

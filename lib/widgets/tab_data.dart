@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TabData {
-  IconData iconData;
+  IconData icon;
   String title;
-  Function onclick;
+  Function onClick;
   final UniqueKey key = UniqueKey();
 
   TabData({
-    @required this.iconData,
+    @required this.icon,
     @required this.title,
-    this.onclick,
+    this.onClick,
   });
 }

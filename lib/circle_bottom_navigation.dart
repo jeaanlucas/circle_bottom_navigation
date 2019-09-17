@@ -65,7 +65,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    activeIcon = widget.tabs[currentSelected].iconData;
+    activeIcon = widget.tabs[currentSelected].icon;
 
     circleColor = (widget.circleColor == null)
       ? (Theme.of(context).brightness == Brightness.dark)
@@ -124,7 +124,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
       setState(() {
         currentSelected = selected;
         _circleAlignX = -1 + (2 / (widget.tabs.length - 1) * selected);
-        nextIcon = widget.tabs[selected].iconData;
+        nextIcon = widget.tabs[selected].icon;
       });
     }
   }
@@ -183,7 +183,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
               (t) => TabItem(
                 uniqueKey: t.key,
                 selected: t.key == this.widget.tabs[currentSelected].key,
-                iconData: t.iconData,
+                icon: t.icon,
                 title: t.title,
                 iconColor: inactiveIconColor,
                 textColor: textColor,
@@ -213,7 +213,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                   bottom: 15,
                 ),
                 child: GestureDetector(
-                  onTap: this.widget.tabs[currentSelected].onclick,
+                  onTap: this.widget.tabs[currentSelected].onClick,
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[

@@ -23,11 +23,11 @@ void main() {
     return CircleBottomNavigation(
       tabs: [
         TabData(
-          iconData: Icons.home,
+          icon: Icons.home,
           title: "Home",
         ),
         TabData(
-          iconData: Icons.history,
+          icon: Icons.history,
           title: "History",
         ),
       ],

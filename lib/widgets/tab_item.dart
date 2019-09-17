@@ -11,7 +11,7 @@ const int ANIM_DURATION = 300;
 class TabItem extends StatelessWidget {
   final UniqueKey uniqueKey;
   final bool selected;
-  final IconData iconData;
+  final IconData icon;
   final String title;
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
@@ -24,7 +24,7 @@ class TabItem extends StatelessWidget {
   TabItem({
     @required this.uniqueKey,
     @required this.selected,
-    @required this.iconData,
+    @required this.icon,
     @required this.title,
     @required this.callbackFunction,
     @required this.textColor,
@@ -92,7 +92,7 @@ class TabItem extends StatelessWidget {
                     0,
                   ),
                   icon: Icon(
-                    iconData,
+                    icon,
                     color: iconColor,
                   ),
                   onPressed: () => callbackFunction(uniqueKey),
