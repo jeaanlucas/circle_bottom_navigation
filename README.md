@@ -16,10 +16,10 @@ dependencies:
 bottomNavigationBar: CircleBottomNavigation(
   initialSelection: currentPage,
   tabs: [
-    TabData(iconData: Icons.home, title: "Home"),
-    TabData(iconData: Icons.history, title: "History"),
-    TabData(iconData: Icons.search, title: "Search"),
-    TabData(iconData: Icons.alarm, title: "Alarm"),
+    TabData(icon: Icons.home, title: "Home"),
+    TabData(icon: Icons.history, title: "History"),
+    TabData(icon: Icons.search, title: "Search"),
+    TabData(icon: Icons.alarm, title: "Alarm"),
   ],
   onTabChangedListener: (index) {
     setState(() {
