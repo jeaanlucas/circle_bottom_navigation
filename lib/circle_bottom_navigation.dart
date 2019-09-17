@@ -1,6 +1,7 @@
 library circle_bottom_navigation;
 
 import 'package:circle_bottom_navigation/widget/tab_data.dart';
+import 'package:circle_bottom_navigation/widget/tab_item.dart';
 import 'package:flutter/material.dart';
 
 class CircleBottomNavigation extends StatefulWidget {
@@ -102,6 +103,16 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     _setSelected(widget.tabs[widget.initialSelection].key);
   }
 
+  void setPage(int page) {
+    widget.onTabChangedListener(page);
+    _setSelected(widget.tabs[page].key);
+    _initAnimationAndStart(_circleAlignX, 1);
+
+    setState(() {
+      currentSelected = page;
+    });
+  }
+
   _setSelected(UniqueKey key) {
     int selected = widget.tabs.indexWhere((tabData) => tabData.key == key);
 
@@ -112,6 +123,22 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
         nextIcon = widget.tabs[selected].iconData;
       });
     }
+  }
+
+  _initAnimationAndStart(double from, double to) {
+    _circleIconAlpha = 0;
+
+    Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
+      setState(() {
+        activeIcon = nextIcon;
+      });
+    }).then((_) {
+      Future.delayed(Duration(milliseconds: (ANIM_DURATION ~/ 5 * 3)), () {
+        setState(() {
+          _circleIconAlpha = 1;
+        });
+      });
+    });
   }
 
   @override
