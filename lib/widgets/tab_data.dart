@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TabData {
-  IconData icon;
-  String title;
-  Function onClick;
+  final IconData icon;
+  final String title;
+  final Function onClick;
+  final double iconSize;
+  final double fontSize;
+  final FontWeight fontWeight;
   final UniqueKey key = UniqueKey();
 
   TabData({
     @required this.icon,
-    @required this.title,
+    this.title,
     this.onClick,
+    this.iconSize,
+    this.fontSize,
+    this.fontWeight,
   });
 }

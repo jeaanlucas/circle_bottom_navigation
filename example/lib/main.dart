@@ -48,29 +48,39 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: CircleBottomNavigation(
-        circleSize: 35,
-        arcHeight: 45,
-        arcWidth: 75,
-        barHeight: 55,
+        barHeight: 70,
+        circleSize: 65,
         initialSelection: currentPage,
         inactiveIconColor: Colors.grey,
         textColor: Colors.black,
         tabs: [
           TabData(
             icon: Icons.home,
+            iconSize: 35,
             title: "Home",
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
           TabData(
             icon: Icons.history,
+            iconSize: 35,
             title: "History",
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
           TabData(
             icon: Icons.search,
+            iconSize: 35,
             title: "Search",
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
           TabData(
             icon: Icons.alarm,
+            iconSize: 35,
             title: "Alarm",
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
           ),
         ],
         onTabChangedListener: (index) {

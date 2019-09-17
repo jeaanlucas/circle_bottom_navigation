@@ -16,6 +16,9 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final double iconSize;
+  final double fontSize;
+  final FontWeight fontWeight;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -25,10 +28,13 @@ class TabItem extends StatelessWidget {
     @required this.uniqueKey,
     @required this.selected,
     @required this.icon,
-    @required this.title,
     @required this.callbackFunction,
     @required this.textColor,
     @required this.iconColor,
+    this.title,
+    this.iconSize,
+    this.fontSize,
+    this.fontWeight = FontWeight.w600,
   });
 
   @override
@@ -37,33 +43,38 @@ class TabItem extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: AnimatedAlign(
-              duration: Duration(
+          title == null
+          ?
+            Container()
+          :
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: AnimatedAlign(
+                duration: Duration(
                   milliseconds: ANIM_DURATION,
-              ),
-              alignment: Alignment(
-                0,
-                (selected) ? TEXT_ON : TEXT_OFF,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(
-                  8.0,
                 ),
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
+                alignment: Alignment(
+                  0,
+                  (selected) ? TEXT_ON : TEXT_OFF,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    8.0,
+                  ),
+                  child: Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontWeight: fontWeight,
+                      fontSize: fontSize,
+                      color: textColor,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
           Container(
             height: double.infinity,
             width: double.infinity,
@@ -94,6 +105,7 @@ class TabItem extends StatelessWidget {
                   icon: Icon(
                     icon,
                     color: iconColor,
+                    size: iconSize,
                   ),
                   onPressed: () => callbackFunction(uniqueKey),
                 ),

@@ -62,12 +62,15 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   Color inactiveIconColor;
   Color barBackgroundColor;
   Color textColor;
+  double activeIconSize;
+  double nextIconSize;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
     activeIcon = widget.tabs[currentSelected].icon;
+    activeIconSize = widget.tabs[currentSelected].iconSize ?? 30;
 
     circleColor = (widget.circleColor == null)
       ? (Theme.of(context).brightness == Brightness.dark)
@@ -127,6 +130,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
         currentSelected = selected;
         _circleAlignX = -1 + (2 / (widget.tabs.length - 1) * selected);
         nextIcon = widget.tabs[selected].icon;
+        nextIconSize = widget.tabs[selected].iconSize ?? 30;
       });
     }
   }
@@ -137,6 +141,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
       setState(() {
         activeIcon = nextIcon;
+        activeIconSize = nextIconSize;
       });
     }).then((_) {
       Future.delayed(Duration(milliseconds: (ANIM_DURATION ~/ 5 * 3)), () {
@@ -189,6 +194,9 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                 title: tab.title,
                 iconColor: inactiveIconColor,
                 textColor: textColor,
+                iconSize: tab.iconSize,
+                fontSize: tab.fontSize,
+                fontWeight: tab.fontWeight,
                 callbackFunction: (key) => _callbackFunction(key),
               ),
             ).toList(),
@@ -281,6 +289,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                                 child: Icon(
                                   activeIcon,
                                   color: activeIconColor,
+                                  size: activeIconSize,
                                 ),
                               ),
                             ),
