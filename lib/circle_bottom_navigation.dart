@@ -1,6 +1,7 @@
 library circle_bottom_navigation;
 
 import 'package:circle_bottom_navigation/utils/half_clipper.dart';
+import 'package:circle_bottom_navigation/utils/half_painter.dart';
 import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:circle_bottom_navigation/widgets/tab_item.dart';
 import 'package:flutter/material.dart';
@@ -252,6 +253,14 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: this.widget.arcHeight,
+                        width: this.widget.arcWidth,
+                        child: CustomPaint(
+                          painter: HalfPainter(barBackgroundColor),
+                        ),
+                      ),
+                      
                     ],
                   ),
                 ),
