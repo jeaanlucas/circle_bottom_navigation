@@ -4,7 +4,9 @@ import 'package:vector_math/vector_math.dart';
 class HalfPainter extends CustomPainter {
   Paint arcPaint;
 
-  HalfPainter(Color paintColor) {
+  HalfPainter({
+    Color paintColor,
+  }) {
     this.arcPaint = Paint()..color = paintColor;
   }
 

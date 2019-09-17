@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 class CircleBottomNavigation extends StatefulWidget {
   final List<TabData> tabs;
   final Function(int position) onTabChangedListener;
-  final Key key;
   final int initialSelection;
   final Color circleColor;
   final Color activeIconColor;
@@ -22,6 +21,8 @@ class CircleBottomNavigation extends StatefulWidget {
   final double arcWidth;
   final double circleOutline;
   final double shadowAllowance;
+
+  final Key key;
 
   CircleBottomNavigation({
     @required this.tabs,
@@ -40,6 +41,7 @@ class CircleBottomNavigation extends StatefulWidget {
     this.circleOutline = 10,
     this.shadowAllowance = 20,
   }) : assert(onTabChangedListener != null),
+       assert(initialSelection != null),
        assert(tabs != null);
 
   @override
@@ -81,7 +83,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
 
     barBackgroundColor = (widget.barBackgroundColor == null)
       ? (Theme.of(context).brightness == Brightness.dark)
-        ? Color(0xFF212121)
+        ? Colors.black54
         : Colors.white
       : widget.barBackgroundColor;
 
@@ -180,11 +182,11 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: this.widget.tabs.map(
-              (t) => TabItem(
-                uniqueKey: t.key,
-                selected: t.key == this.widget.tabs[currentSelected].key,
-                icon: t.icon,
-                title: t.title,
+              (tab) => TabItem(
+                uniqueKey: tab.key,
+                selected: tab.key == this.widget.tabs[currentSelected].key,
+                icon: tab.icon,
+                title: tab.title,
                 iconColor: inactiveIconColor,
                 textColor: textColor,
                 callbackFunction: (key) => _callbackFunction(key),
@@ -205,86 +207,87 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
               ),
               curve: Curves.easeOut,
               alignment: Alignment(
-                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1 ),
                 1,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
                   bottom: 15,
                 ),
-                child: GestureDetector(
-                  onTap: this.widget.tabs[currentSelected].onClick,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: this.widget.circleSize +
-                          this.widget.circleOutline +
-                          this.widget.shadowAllowance,
-                        width: this.widget.circleSize +
-                          this.widget.circleOutline +
-                          this.widget.shadowAllowance,
-                        child: ClipRect(
-                          clipper: HalfClipper(),
+                child: FractionallySizedBox(
+                  widthFactor: 1 / this.widget.tabs.length,
+                  child: GestureDetector(
+                    onTap: this.widget.tabs[currentSelected].onClick,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: this.widget.circleSize +
+                            this.widget.circleOutline +
+                            this.widget.shadowAllowance,
+                          width: this.widget.circleSize +
+                            this.widget.circleOutline +
+                            this.widget.shadowAllowance,
+                          child: ClipRect(
+                            clipper: HalfClipper(),
+                            child: Container(
+                              child: Center(
+                                child: Container(
+                                  width: this.widget.circleSize +
+                                    this.widget.circleOutline,
+                                  height: this.widget.circleSize +
+                                    this.widget.circleOutline,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black12,
+                                        blurRadius: 8,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: this.widget.arcHeight,
+                          width: this.widget.arcWidth,
+                          child: CustomPaint(
+                            painter: HalfPainter(
+                              paintColor: barBackgroundColor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: this.widget.circleSize,
+                          width: this.widget.circleSize,
                           child: Container(
-                            child: Center(
-                              child: Container(
-                                width: (
-                                  this.widget.circleSize +
-                                  this.widget.circleOutline
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: circleColor,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(
+                                0.0,
+                              ),
+                              child: AnimatedOpacity(
+                                duration: Duration(
+                                  milliseconds: ANIM_DURATION ~/ 5,
                                 ),
-                                height: (
-                                  this.widget.circleSize +
-                                  this.widget.circleOutline
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 8,
-                                    ),
-                                  ],
+                                opacity: _circleIconAlpha,
+                                child: Icon(
+                                  activeIcon,
+                                  color: activeIconColor,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: this.widget.arcHeight,
-                        width: this.widget.arcWidth,
-                        child: CustomPaint(
-                          painter: HalfPainter(barBackgroundColor),
-                        ),
-                      ),
-                      SizedBox(
-                        height: this.widget.circleSize,
-                        width: this.widget.circleSize,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: circleColor,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(
-                              0.0,
-                            ),
-                            child: AnimatedOpacity(
-                              duration: Duration(
-                                milliseconds: ANIM_DURATION ~/ 5,
-                              ),
-                              opacity: _circleIconAlpha,
-                              child: Icon(
-                                activeIcon,
-                                color: activeIconColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

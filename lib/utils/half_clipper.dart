@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class HalfClipper extends CustomClipper<Rect> {
   @override
   Rect getClip(Size size) {
-    return Rect.fromLTWH(
+    final rect = Rect.fromLTWH(
       0,
       0,
       size.width,
       size.height / 2,
     );
+    return rect;
   }
 
   @override
