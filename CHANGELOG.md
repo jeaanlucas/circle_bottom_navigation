@@ -1,3 +1,6 @@
+# [1.0.1] - Dart Analysis.
+* Included dart analysis
+
 # [1.0.0] - Changes to TabData and release.
 * Now is possible to set title optionally
 * It's possible to set icon size optionally
