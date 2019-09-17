@@ -207,7 +207,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
               ),
               curve: Curves.easeOut,
               alignment: Alignment(
-                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1 ),
+                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
                 1,
               ),
               child: Padding(
