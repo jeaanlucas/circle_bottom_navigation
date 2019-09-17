@@ -1,7 +1,8 @@
 library circle_bottom_navigation;
 
-import 'package:circle_bottom_navigation/widget/tab_data.dart';
-import 'package:circle_bottom_navigation/widget/tab_item.dart';
+import 'package:circle_bottom_navigation/utils/half_clipper.dart';
+import 'package:circle_bottom_navigation/widgets/tab_data.dart';
+import 'package:circle_bottom_navigation/widgets/tab_item.dart';
 import 'package:flutter/material.dart';
 
 class CircleBottomNavigation extends StatefulWidget {
@@ -224,7 +225,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                           this.widget.shadowAllowance
                         ),
                         child: ClipRect(
-                          
+                          clipper: HalfClipper(),
                         ),
                       ),
                     ],
