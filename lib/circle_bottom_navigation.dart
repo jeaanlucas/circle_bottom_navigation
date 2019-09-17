@@ -62,6 +62,37 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    activeIcon = widget.tabs[currentSelected].iconData;
+
+    circleColor = (widget.circleColor == null)
+      ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Theme.of(context).primaryColor
+      : widget.circleColor;
+
+    activeIconColor = (widget.activeIconColor == null)
+      ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.black54
+        : Colors.white
+      : widget.activeIconColor;
+
+    barBackgroundColor = (widget.barBackgroundColor == null)
+      ? (Theme.of(context).brightness == Brightness.dark)
+        ? Color(0xFF212121)
+        : Colors.white
+      : widget.barBackgroundColor;
+
+    textColor = (widget.textColor == null)
+      ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Colors.black54
+      : widget.textColor;
+
+    inactiveIconColor = (widget.inactiveIconColor == null)
+      ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Theme.of(context).primaryColor
+      : widget.inactiveIconColor;
   }
 
   @override
