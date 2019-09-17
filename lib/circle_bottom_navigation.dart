@@ -142,10 +142,10 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   }
 
   _callbackFunction(UniqueKey key) {
-    int selected = widget.tabs.indexWhere(
+    int selected = this.widget.tabs.indexWhere(
             (tabData) => tabData.key == key
     );
-    widget.onTabChangedListener(selected);
+    this.widget.onTabChangedListener(selected);
     _setSelected(key);
     _initAnimationAndStart(_circleAlignX, 1);
   }
@@ -174,10 +174,10 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: widget.tabs.map(
+            children: this.widget.tabs.map(
               (t) => TabItem(
                 uniqueKey: t.key,
-                selected: t.key == widget.tabs[currentSelected].key,
+                selected: t.key == this.widget.tabs[currentSelected].key,
                 iconData: t.iconData,
                 title: t.title,
                 iconColor: inactiveIconColor,
@@ -185,6 +185,25 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                 callbackFunction: (key) => _callbackFunction(key),
               ),
             ).toList(),
+          ),
+        ),
+        Positioned.fill(
+          top: -(
+            this.widget.circleSize +
+            this.widget.circleOutline +
+            this.widget.shadowAllowance
+          ) / 2,
+          child: Container(
+            child: AnimatedAlign(
+              duration: Duration(
+                milliseconds: ANIM_DURATION,
+              ),
+              curve: Curves.easeOut,
+              alignment: Alignment(
+                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+                1,
+              ),
+            ),
           ),
         ),
       ],
