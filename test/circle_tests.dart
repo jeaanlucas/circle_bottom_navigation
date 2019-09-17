@@ -19,8 +19,8 @@ void main() {
     );
   }
 
-  testWidgets('Circle has correct tabs', (WidgetTester tester) async {
-    CircleBottomNavigation child = CircleBottomNavigation(
+  Widget _returnCircleNav() {
+    return CircleBottomNavigation(
       tabs: [
         TabData(
           iconData: Icons.home,
@@ -33,29 +33,44 @@ void main() {
       ],
       onTabChangedListener: (position) {},
     );
+  }
 
+  testWidgets('Test if circle has correct tabs', (WidgetTester tester) async {
     await tester.pumpWidget(
       makeWidget(
-        child: child,
+        child: _returnCircleNav(),
       ),
     );
 
     final homeTabFinder = find.text("Home");
+    final homeIconTabFinder = find.byIcon(Icons.home);
+    final historyTabFinder = find.text("History");
+    final historyIconTabFinder = find.byIcon(Icons.history);
+    final randomTabFinder = find.text("Search");
+    final randomIconTabFinder = find.byIcon(Icons.search);
+
     expect(homeTabFinder, findsOneWidget);
+    expect(homeIconTabFinder, findsNWidgets(2));
+    expect(historyTabFinder, findsOneWidget);
+    expect(historyIconTabFinder, findsOneWidget);
+    expect(randomTabFinder, findsNothing);
+    expect(randomIconTabFinder, findsNothing);
+  });
+
+  testWidgets('Test if clicking icon moves the circle', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      makeWidget(
+        child: _returnCircleNav(),
+      ),
+    );
 
     final homeIconTabFinder = find.byIcon(Icons.home);
-    expect(homeIconTabFinder, findsNWidgets(2));
+    final historyIconTabFinder = find.byIcon(Icons.history);
 
-    final searchTabFinder = find.text("History");
-    expect(searchTabFinder, findsOneWidget);
+    await tester.tap(historyIconTabFinder);
+    await tester.pumpAndSettle();
 
-    final searchIconTabFinder = find.byIcon(Icons.history);
-    expect(searchIconTabFinder, findsOneWidget);
-
-    final randomTabFinder = find.text("Search");
-    expect(randomTabFinder, findsNothing);
-
-    final randomIconTabFinder = find.byIcon(Icons.search);
-    expect(randomIconTabFinder, findsNothing);
+    await tester.tap(homeIconTabFinder);
+    await tester.pumpAndSettle();
   });
 }
