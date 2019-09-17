@@ -141,9 +141,54 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     });
   }
 
+  _callbackFunction(UniqueKey key) {
+    int selected = widget.tabs.indexWhere(
+            (tabData) => tabData.key == key
+    );
+    widget.onTabChangedListener(selected);
+    _setSelected(key);
+    _initAnimationAndStart(_circleAlignX, 1);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack();
+    return Stack(
+      overflow: Overflow.visible,
+      alignment: Alignment.bottomCenter,
+      children: <Widget>[
+        Container(
+          height: this.widget.barHeight,
+          decoration: BoxDecoration(
+            color: barBackgroundColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(
+                  0,
+                  -1,
+                ),
+                blurRadius: 8,
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: widget.tabs.map(
+              (t) => TabItem(
+                uniqueKey: t.key,
+                selected: t.key == widget.tabs[currentSelected].key,
+                iconData: t.iconData,
+                title: t.title,
+                iconColor: inactiveIconColor,
+                textColor: textColor,
+                callbackFunction: (key) => _callbackFunction(key),
+              ),
+            ).toList(),
+          ),
+        ),
+      ],
+    );
   }
 }
 
