@@ -21,14 +21,15 @@ void main() {
 
   Widget _returnCircleNav() {
     return CircleBottomNavigation(
+      initialSelection: 0,
       tabs: [
         TabData(
           icon: Icons.home,
-          title: "Home",
+          title: 'Home',
         ),
         TabData(
           icon: Icons.history,
-          title: "History",
+          title: 'History',
         ),
       ],
       onTabChangedListener: (position) {},
@@ -42,11 +43,11 @@ void main() {
       ),
     );
 
-    final homeTabFinder = find.text("Home");
+    final homeTabFinder = find.text('Home');
     final homeIconTabFinder = find.byIcon(Icons.home);
-    final historyTabFinder = find.text("History");
+    final historyTabFinder = find.text('History');
     final historyIconTabFinder = find.byIcon(Icons.history);
-    final randomTabFinder = find.text("Search");
+    final randomTabFinder = find.text('Search');
     final randomIconTabFinder = find.byIcon(Icons.search);
 
     expect(homeTabFinder, findsOneWidget);

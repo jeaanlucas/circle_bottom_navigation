@@ -2,8 +2,6 @@ include: package:pedantic/analysis_options.yaml
 
 # https://www.dart.dev/guides/language/analysis-options
 analyzer:
-  exlude:
-    - test/circle_testes.dart
 
 # Source of linter options:
 # http://dart-lang.github.io/linter/lints/options/options.html
