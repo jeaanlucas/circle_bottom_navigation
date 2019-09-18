@@ -1,10 +1,9 @@
+# Defines a default set of lint rules enforced for
+# projects at Google. For details and rationale,
+# see https://github.com/dart-lang/pedantic#enabled-lints.
 include: package:pedantic/analysis_options.yaml
 
-# https://www.dart.dev/guides/language/analysis-options
-analyzer:
-
-# Source of linter options:
-# http://dart-lang.github.io/linter/lints/options/options.html
+# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
 linter:
   rules:
     - always_declare_return_types
@@ -24,3 +23,7 @@ linter:
     - prefer_single_quotes
     - unnecessary_new
     - unnecessary_parenthesis
+
+# analyzer:
+#   exlude:
+#     - test/circle_testes.dart
