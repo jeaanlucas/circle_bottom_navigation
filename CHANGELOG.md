@@ -1,3 +1,6 @@
+# [1.0.3] - Fix pub.dev errors.
+* Fixed some errors found on pub.dev 
+
 # [1.0.2] - Readme.
 * Fixed readme consistance
 * analysis_options updated
