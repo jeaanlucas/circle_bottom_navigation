@@ -31,7 +31,7 @@ class HalfPainter extends CustomPainter {
       10,
     );
 
-    final path = Path();
+    final Path path = Path();
     path.arcTo(beforeRect, radians(0), radians(90), false);
     path.lineTo(20, size.height / 2);
     path.arcTo(largeRect, radians(0), -radians(180), false);

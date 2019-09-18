@@ -1,11 +1,15 @@
-# https://www.dartlang.org/guides/language/analysis-options
+include: package:pedantic/analysis_options.yaml
+
+# https://www.dart.dev/guides/language/analysis-options
 analyzer:
-  language:
+  exlude:
+    - test/circle_testes.dart
 
 # Source of linter options:
 # http://dart-lang.github.io/linter/lints/options/options.html
 linter:
   rules:
+    - always_declare_return_types
     - camel_case_types
     - hash_and_equals
     - iterable_contains_unrelated_type
@@ -13,3 +17,12 @@ linter:
     - unrelated_type_equality_checks
     - valid_regexps
     - empty_constructor_bodies
+    - always_require_non_null_named_parameters
+    - avoid_empty_else
+    - avoid_print
+    - avoid_return_types_on_setters
+    - avoid_unused_constructor_parameters
+    - await_only_futures
+    - prefer_single_quotes
+    - unnecessary_new
+    - unnecessary_parenthesis

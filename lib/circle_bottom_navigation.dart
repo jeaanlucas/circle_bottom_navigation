@@ -120,9 +120,9 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     });
   }
 
-  _setSelected(UniqueKey key) {
+  void _setSelected(UniqueKey key) {
     int selected = widget.tabs.indexWhere(
-      (tabData) => tabData.key == key
+      (TabData tabData) => tabData.key == key
     );
 
     if (mounted) {
@@ -135,26 +135,36 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     }
   }
 
-  _initAnimationAndStart(double from, double to) {
+  void _initAnimationAndStart(double from, double to) {
     _circleIconAlpha = 0;
 
-    Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
-      setState(() {
-        activeIcon = nextIcon;
-        activeIconSize = nextIconSize;
-      });
-    }).then((_) {
-      Future.delayed(Duration(milliseconds: (ANIM_DURATION ~/ 5 * 3)), () {
+    Future.delayed(
+      Duration(
+        milliseconds: ANIM_DURATION ~/ 5,
+      ),
+      () {
         setState(() {
-          _circleIconAlpha = 1;
+          activeIcon = nextIcon;
+          activeIconSize = nextIconSize;
         });
-      });
+      },
+    ).then((_) {
+      Future.delayed(
+        Duration(
+          milliseconds: ANIM_DURATION ~/ 5 * 3,
+        ),
+        () {
+          setState(() {
+            _circleIconAlpha = 1;
+          });
+        }
+      );
     });
   }
 
-  _callbackFunction(UniqueKey key) {
+  void _callbackFunction(UniqueKey key) {
     int selected = this.widget.tabs.indexWhere(
-      (tabData) => tabData.key == key
+      (TabData tabData) => tabData.key == key
     );
 
     this.widget.onTabChangedListener(selected);
@@ -172,7 +182,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
           height: this.widget.barHeight,
           decoration: BoxDecoration(
             color: barBackgroundColor,
-            boxShadow: [
+            boxShadow: <BoxShadow>[
               BoxShadow(
                 color: Colors.black12,
                 offset: Offset(
@@ -187,7 +197,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: this.widget.tabs.map(
-              (tab) => TabItem(
+              (TabData tab) => TabItem(
                 uniqueKey: tab.key,
                 selected: tab.key == this.widget.tabs[currentSelected].key,
                 icon: tab.icon,
@@ -197,7 +207,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                 iconSize: tab.iconSize,
                 fontSize: tab.fontSize,
                 fontWeight: tab.fontWeight,
-                callbackFunction: (key) => _callbackFunction(key),
+                callbackFunction: (UniqueKey key) => _callbackFunction(key),
               ),
             ).toList(),
           ),
@@ -248,7 +258,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     shape: BoxShape.circle,
-                                    boxShadow: [
+                                    boxShadow: <BoxShadow>[
                                       BoxShadow(
                                         color: Colors.black12,
                                         blurRadius: 8,

@@ -42,7 +42,7 @@ class TabItem extends StatelessWidget {
     return Expanded(
       child: Stack(
         fit: StackFit.expand,
-        children: [
+        children: <Widget>[
           title == null
           ?
             Container()
@@ -56,7 +56,7 @@ class TabItem extends StatelessWidget {
                 ),
                 alignment: Alignment(
                   0,
-                  (selected) ? TEXT_ON : TEXT_OFF,
+                  selected ? TEXT_ON : TEXT_OFF,
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(
@@ -85,13 +85,13 @@ class TabItem extends StatelessWidget {
               curve: Curves.easeIn,
               alignment: Alignment(
                 0,
-                (selected) ? ICON_OFF : ICON_ON,
+                selected ? ICON_OFF : ICON_ON,
               ),
               child: AnimatedOpacity(
                 duration: Duration(
                   milliseconds: ANIM_DURATION,
                 ),
-                opacity: (selected) ? ALPHA_OFF : ALPHA_ON,
+                opacity: selected ? ALPHA_OFF : ALPHA_ON,
                 child: IconButton(
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,

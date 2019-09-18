@@ -1,3 +1,7 @@
+# [1.0.2] - Readme.
+* Fixed readme consistance
+* analysis_options updated
+
 # [1.0.1] - Dart Analysis.
 * Included dart analysis
 
