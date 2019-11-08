@@ -39,11 +39,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+//          color: Colors.white,
+          color: Colors.greenAccent,
         ),
         child: Center(
           child: Text(
-            'Test Circle Navigation'
+            'Test Circle Navigation',
+            style: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

@@ -48,8 +48,7 @@ class CircleBottomNavigation extends StatefulWidget {
   _CircleBottomNavigationState createState() => _CircleBottomNavigationState();
 }
 
-class _CircleBottomNavigationState extends State<CircleBottomNavigation>
-    with TickerProviderStateMixin, RouteAware {
+class _CircleBottomNavigationState extends State<CircleBottomNavigation> with TickerProviderStateMixin, RouteAware {
   IconData nextIcon = Icons.search;
   IconData activeIcon = Icons.search;
 
@@ -73,33 +72,20 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
     activeIconSize = widget.tabs[currentSelected].iconSize ?? 30;
 
     circleColor = (widget.circleColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
-            ? Colors.white
-            : Theme.of(context).primaryColor
+        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor
         : widget.circleColor;
 
-    activeIconColor = (widget.activeIconColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
-            ? Colors.black54
-            : Colors.white
-        : widget.activeIconColor;
+    activeIconColor =
+        (widget.activeIconColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white : widget.activeIconColor;
 
     barBackgroundColor = (widget.barBackgroundColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
-            ? Colors.black54
-            : Colors.white
+        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white
         : widget.barBackgroundColor;
 
-    textColor = (widget.textColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
-            ? Colors.white
-            : Colors.black54
-        : widget.textColor;
+    textColor = (widget.textColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Colors.black54 : widget.textColor;
 
     inactiveIconColor = (widget.inactiveIconColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
-            ? Colors.white
-            : Theme.of(context).primaryColor
+        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
   }
 
@@ -121,8 +107,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   }
 
   void _setSelected(UniqueKey key) {
-    int selected =
-        widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    int selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     if (mounted) {
       setState(() {
@@ -160,8 +145,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   }
 
   void _callbackFunction(UniqueKey key) {
-    int selected =
-        this.widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    int selected = this.widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     this.widget.onTabChangedListener(selected);
     _setSelected(key);
@@ -213,10 +197,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
           ),
         ),
         Positioned.fill(
-          top: -(this.widget.circleSize +
-                  this.widget.circleOutline +
-                  this.widget.shadowAllowance) /
-              2,
+          top: -(this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance) / 2,
           child: Container(
             child: AnimatedAlign(
               duration: Duration(
@@ -224,8 +205,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
               ),
               curve: Curves.easeOut,
               alignment: Alignment(
-                _circleAlignX *
-                    (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
                 1,
               ),
               child: Padding(
@@ -240,21 +220,15 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                       alignment: Alignment.center,
                       children: <Widget>[
                         SizedBox(
-                          height: this.widget.circleSize +
-                              this.widget.circleOutline +
-                              this.widget.shadowAllowance,
-                          width: this.widget.circleSize +
-                              this.widget.circleOutline +
-                              this.widget.shadowAllowance,
+                          height: this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
+                          width: this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
                           child: ClipRect(
                             clipper: HalfClipper(),
                             child: Container(
                               child: Center(
                                 child: Container(
-                                  width: this.widget.circleSize +
-                                      this.widget.circleOutline,
-                                  height: this.widget.circleSize +
-                                      this.widget.circleOutline,
+                                  width: this.widget.circleSize + this.widget.circleOutline,
+                                  height: this.widget.circleSize + this.widget.circleOutline,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     shape: BoxShape.circle,
