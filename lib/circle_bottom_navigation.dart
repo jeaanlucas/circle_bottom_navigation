@@ -21,6 +21,7 @@ class CircleBottomNavigation extends StatefulWidget {
   final double arcWidth;
   final double circleOutline;
   final double shadowAllowance;
+  final bool hasShadows;
 
   final Key key;
 
@@ -40,6 +41,7 @@ class CircleBottomNavigation extends StatefulWidget {
     this.arcWidth = 90,
     this.circleOutline = 10,
     this.shadowAllowance = 20,
+    this.hasShadows = true,
   })  : assert(onTabChangedListener != null),
         assert(initialSelection != null),
         assert(tabs != null);
