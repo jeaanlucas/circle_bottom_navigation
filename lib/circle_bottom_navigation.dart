@@ -162,19 +162,21 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
       children: <Widget>[
         Container(
           height: this.widget.barHeight,
-          decoration: BoxDecoration(
-            color: barBackgroundColor,
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black12,
-                offset: Offset(
-                  0,
-                  -1,
-                ),
-                blurRadius: 8,
-              ),
-            ],
-          ),
+          decoration: this.widget.hasShadows
+              ? BoxDecoration(
+                  color: barBackgroundColor,
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(
+                        0,
+                        -1,
+                      ),
+                      blurRadius: 8,
+                    ),
+                  ],
+                )
+              : null,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,

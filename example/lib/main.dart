@@ -25,7 +25,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
-  GlobalKey bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         decoration: BoxDecoration(
-//          color: Colors.white,
-          color: Colors.greenAccent,
+          color: Colors.white,
         ),
         child: Center(
           child: Text(
             'Test Circle Navigation',
             style: TextStyle(
-              fontSize: 22.0,
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -89,11 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fontWeight: FontWeight.bold,
           ),
         ],
-        onTabChangedListener: (index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
+        onTabChangedListener: (index) => setState(() => currentPage = index),
       ),
     );
   }
