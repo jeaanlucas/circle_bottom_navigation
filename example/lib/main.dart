@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         initialSelection: currentPage,
         inactiveIconColor: Colors.grey,
         textColor: Colors.black,
+        hasElevationShadows: false,
         tabs: [
           TabData(
             icon: Icons.home,

@@ -1,3 +1,6 @@
+# [1.0.5] - Fix shadows.
+* Property hasElevationShadows fixed
+
 # [1.0.4] - Shadow properties.
 * Included hasElevationShadows and blurShadowRadius to manipulate bar shadows
 * Updated example folder
