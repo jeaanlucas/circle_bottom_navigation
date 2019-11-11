@@ -22,6 +22,7 @@ class CircleBottomNavigation extends StatefulWidget {
   final double circleOutline;
   final double shadowAllowance;
   final bool hasShadows;
+  final double blurShadowRadius;
 
   final Key key;
 
@@ -35,13 +36,14 @@ class CircleBottomNavigation extends StatefulWidget {
     this.inactiveIconColor,
     this.textColor,
     this.barBackgroundColor,
-    this.circleSize = 60,
-    this.barHeight = 60,
-    this.arcHeight = 70,
-    this.arcWidth = 90,
-    this.circleOutline = 10,
-    this.shadowAllowance = 20,
+    this.circleSize = 60.0,
+    this.barHeight = 60.0,
+    this.arcHeight = 70.0,
+    this.arcWidth = 90.0,
+    this.circleOutline = 10.0,
+    this.shadowAllowance = 20.0,
     this.hasShadows = true,
+    this.blurShadowRadius = 8.0,
   })  : assert(onTabChangedListener != null),
         assert(initialSelection != null),
         assert(tabs != null);
@@ -172,7 +174,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                         0,
                         -1,
                       ),
-                      blurRadius: 8,
+                      blurRadius: this.widget.blurShadowRadius,
                     ),
                   ],
                 )

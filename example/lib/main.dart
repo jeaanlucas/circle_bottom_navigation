@@ -25,6 +25,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
+  final List _pages = [
+    Home(),
+    History(),
+    Search(),
+    Alarm(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Center(
-          child: Text(
-            'Test Circle Navigation',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+      body: _pages[currentPage],
       bottomNavigationBar: CircleBottomNavigation(
         barHeight: 70,
         circleSize: 65,
         initialSelection: currentPage,
         inactiveIconColor: Colors.grey,
         textColor: Colors.black,
-        hasShadows: false,
+//        blurShadowRadius: 8.0,
+//        hasShadows: false,
         tabs: [
           TabData(
             icon: Icons.home,
@@ -88,6 +82,82 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         onTabChangedListener: (index) => setState(() => currentPage = index),
+      ),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text(
+            'Home',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class History extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text(
+            'History',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Search extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text(
+            'Search',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Alarm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text(
+            'Alarm ',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }
