@@ -1,12 +1,6 @@
-# [1.0.3] - Fix pub.dev errors.
-* Fixed some errors found on pub.dev 
-
-# [1.0.2] - Readme.
-* Fixed readme consistance
-* analysis_options updated
-
-# [1.0.1] - Dart Analysis.
-* Included dart analysis
+# [1.0.4] - Shadow properties.
+* Included hasElevationShadows and blurShadowRadius to manipulate bar shadows
+* Updated example folder
 
 # [1.0.0] - Changes to TabData and release.
 * Now is possible to set title optionally

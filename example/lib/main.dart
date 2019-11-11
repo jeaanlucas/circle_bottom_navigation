@@ -25,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
-  final List _pages = [
+  final List<Widget> _pages = [
     Home(),
     History(),
     Search(),
@@ -49,8 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
         initialSelection: currentPage,
         inactiveIconColor: Colors.grey,
         textColor: Colors.black,
-//        blurShadowRadius: 8.0,
-//        hasShadows: false,
         tabs: [
           TabData(
             icon: Icons.home,

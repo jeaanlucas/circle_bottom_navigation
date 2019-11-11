@@ -21,7 +21,7 @@ class CircleBottomNavigation extends StatefulWidget {
   final double arcWidth;
   final double circleOutline;
   final double shadowAllowance;
-  final bool hasShadows;
+  final bool hasElevationShadows;
   final double blurShadowRadius;
 
   final Key key;
@@ -42,7 +42,7 @@ class CircleBottomNavigation extends StatefulWidget {
     this.arcWidth = 90.0,
     this.circleOutline = 10.0,
     this.shadowAllowance = 20.0,
-    this.hasShadows = true,
+    this.hasElevationShadows = true,
     this.blurShadowRadius = 8.0,
   })  : assert(onTabChangedListener != null),
         assert(initialSelection != null),
@@ -164,7 +164,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
       children: <Widget>[
         Container(
           height: this.widget.barHeight,
-          decoration: this.widget.hasShadows
+          decoration: this.widget.hasElevationShadows
               ? BoxDecoration(
                   color: barBackgroundColor,
                   boxShadow: <BoxShadow>[

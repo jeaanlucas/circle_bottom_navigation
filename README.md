@@ -1,12 +1,14 @@
 # Circle Bottom Navigation
 
+![demo](https://media.giphy.com/media/joflEnk6kMGdAuObPT/giphy.gif)
+
 ## Getting Started
 Add the plugin:
 
 ```yaml
 dependencies:
   ...
-  circle_bottom_navigation: ^1.0.3
+  circle_bottom_navigation: ^1.0.4
 ```
 
 ## Minimum Usage
@@ -19,11 +21,7 @@ bottomNavigationBar: CircleBottomNavigation(
     TabData(icon: Icons.search),
     TabData(icon: Icons.alarm),
   ],
-  onTabChangedListener: (index) {
-    setState(() {
-      currentPage = index;
-    });
-  },
+  onTabChangedListener: (index) => setState(() => currentPage = index),
 )
 ```
 
@@ -39,12 +37,14 @@ bottomNavigationBar: CircleBottomNavigation(
 **inactiveIconColor** -> Defaults to null, derives from `Theme`<br>
 **textColor** -> Defaults to null, derives from `Theme`<br>
 **barBackgroundColor** -> Defaults to null, derives from `Theme`<br>
-**circleSize** -> Defaults to 60, size of intern circle<br>
-**barHeight** -> Defaults to 60, height of bar<br>
-**arcHeight** -> Defaults to 70, height of external circle arc<br>
-**arcWidth** -> Defaults to 90, width of external circle arc<br>
-**circleOutline** -> Defaults to 10<br>
-**shadowAllowance** -> Defaults to 20, size of shadow<br>
+**circleSize** -> Defaults to 60.0, size of intern circle<br>
+**barHeight** -> Defaults to 60.0, height of bar<br>
+**arcHeight** -> Defaults to 70.0, height of external circle arc<br>
+**arcWidth** -> Defaults to 90.0, width of external circle arc<br>
+**circleOutline** -> Defaults to 10.0<br>
+**shadowAllowance** -> Defaults to 20.0, size of icon shadow<br>
+**hasElevationShadows** -> Defaults to true, define if bar have elevation shadows<br>
+**blurShadowRadius** -> Defaults to 8.0, size of bar shadow if *hasElevationShadows* is true <br>
 **key** -> Defaults to null
 
 ## TabData
