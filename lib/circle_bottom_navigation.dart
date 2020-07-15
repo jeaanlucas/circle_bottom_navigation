@@ -24,6 +24,7 @@ class CircleBottomNavigation extends StatefulWidget {
   final bool hasElevationShadows;
   final double blurShadowRadius;
 
+  @override
   final Key key;
 
   CircleBottomNavigation({
@@ -75,16 +76,14 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
     activeIcon = widget.tabs[currentSelected].icon;
     activeIconSize = widget.tabs[currentSelected].iconSize ?? 30;
 
-    circleColor = (widget.circleColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor
-        : widget.circleColor;
+    circleColor =
+        (widget.circleColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor : widget.circleColor;
 
     activeIconColor =
         (widget.activeIconColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white : widget.activeIconColor;
 
-    barBackgroundColor = (widget.barBackgroundColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white
-        : widget.barBackgroundColor;
+    barBackgroundColor =
+        (widget.barBackgroundColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white : widget.barBackgroundColor;
 
     textColor = (widget.textColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Colors.black54 : widget.textColor;
 
@@ -105,13 +104,11 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
     _setSelected(widget.tabs[page].key);
     _initAnimationAndStart(_circleAlignX, 1);
 
-    setState(() {
-      currentSelected = page;
-    });
+    setState(() => currentSelected = page);
   }
 
   void _setSelected(UniqueKey key) {
-    int selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     if (mounted) {
       setState(() {
@@ -141,159 +138,153 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
           Duration(
             milliseconds: ANIM_DURATION ~/ 5 * 3,
           ), () {
-        setState(() {
-          _circleIconAlpha = 1;
-        });
+        setState(() => _circleIconAlpha = 1);
       });
     });
   }
 
   void _callbackFunction(UniqueKey key) {
-    int selected = this.widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
-    this.widget.onTabChangedListener(selected);
+    widget.onTabChangedListener(selected);
     _setSelected(key);
     _initAnimationAndStart(_circleAlignX, 1);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      overflow: Overflow.visible,
-      alignment: Alignment.bottomCenter,
-      children: <Widget>[
-        Container(
-          height: this.widget.barHeight,
-          decoration: BoxDecoration(
-            color: barBackgroundColor,
-            boxShadow: <BoxShadow>[
-              this.widget.hasElevationShadows
-                  ? BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(
-                        0,
-                        -1,
-                      ),
-                      blurRadius: this.widget.blurShadowRadius,
-                    )
-                  : BoxShadow(),
-            ],
+  Widget build(BuildContext context) => Stack(
+        overflow: Overflow.visible,
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          Container(
+            height: widget.barHeight,
+            decoration: BoxDecoration(
+              color: barBackgroundColor,
+              boxShadow: <BoxShadow>[
+                widget.hasElevationShadows
+                    ? BoxShadow(
+                        color: Colors.black12,
+                        offset: const Offset(
+                          0,
+                          -1,
+                        ),
+                        blurRadius: widget.blurShadowRadius,
+                      )
+                    : const BoxShadow(),
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: widget.tabs
+                  .map(
+                    (TabData tab) => TabItem(
+                      uniqueKey: tab.key,
+                      selected: tab.key == widget.tabs[currentSelected].key,
+                      icon: tab.icon,
+                      title: tab.title,
+                      iconColor: inactiveIconColor,
+                      textColor: textColor,
+                      iconSize: tab.iconSize,
+                      fontSize: tab.fontSize,
+                      fontWeight: tab.fontWeight,
+                      callbackFunction: (UniqueKey key) => _callbackFunction(key),
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: this
-                .widget
-                .tabs
-                .map(
-                  (TabData tab) => TabItem(
-                    uniqueKey: tab.key,
-                    selected: tab.key == this.widget.tabs[currentSelected].key,
-                    icon: tab.icon,
-                    title: tab.title,
-                    iconColor: inactiveIconColor,
-                    textColor: textColor,
-                    iconSize: tab.iconSize,
-                    fontSize: tab.fontSize,
-                    fontWeight: tab.fontWeight,
-                    callbackFunction: (UniqueKey key) => _callbackFunction(key),
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-        Positioned.fill(
-          top: -(this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance) / 2,
-          child: Container(
-            child: AnimatedAlign(
-              duration: Duration(
-                milliseconds: ANIM_DURATION,
-              ),
-              curve: Curves.easeOut,
-              alignment: Alignment(
-                _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
-                1,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  bottom: 15,
+          Positioned.fill(
+            top: -(widget.circleSize + widget.circleOutline + widget.shadowAllowance) / 2,
+            child: Container(
+              child: AnimatedAlign(
+                duration: Duration(
+                  milliseconds: ANIM_DURATION,
                 ),
-                child: FractionallySizedBox(
-                  widthFactor: 1 / this.widget.tabs.length,
-                  child: GestureDetector(
-                    onTap: this.widget.tabs[currentSelected].onClick,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          height: this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
-                          width: this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
-                          child: ClipRect(
-                            clipper: HalfClipper(),
-                            child: Container(
-                              child: Center(
-                                child: Container(
-                                  width: this.widget.circleSize + this.widget.circleOutline,
-                                  height: this.widget.circleSize + this.widget.circleOutline,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 8,
-                                      ),
-                                    ],
+                curve: Curves.easeOut,
+                alignment: Alignment(
+                  _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+                  1,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 15,
+                  ),
+                  child: FractionallySizedBox(
+                    widthFactor: 1 / widget.tabs.length,
+                    child: GestureDetector(
+                      onTap: widget.tabs[currentSelected].onClick,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
+                            width: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
+                            child: ClipRect(
+                              clipper: HalfClipper(),
+                              child: Container(
+                                child: Center(
+                                  child: Container(
+                                    width: widget.circleSize + widget.circleOutline,
+                                    height: widget.circleSize + widget.circleOutline,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 8,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: this.widget.arcHeight,
-                          width: this.widget.arcWidth,
-                          child: CustomPaint(
-                            painter: HalfPainter(
-                              paintColor: barBackgroundColor,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: this.widget.circleSize,
-                          width: this.widget.circleSize,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: circleColor,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(
-                                0.0,
-                              ),
-                              child: AnimatedOpacity(
-                                duration: Duration(
-                                  milliseconds: ANIM_DURATION ~/ 5,
-                                ),
-                                opacity: _circleIconAlpha,
-                                child: Icon(
-                                  activeIcon,
-                                  color: activeIconColor,
-                                  size: activeIconSize,
-                                ),
+                          SizedBox(
+                            height: widget.arcHeight,
+                            width: widget.arcWidth,
+                            child: CustomPaint(
+                              painter: HalfPainter(
+                                paintColor: barBackgroundColor,
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: widget.circleSize,
+                            width: widget.circleSize,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: circleColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(
+                                  0.0,
+                                ),
+                                child: AnimatedOpacity(
+                                  duration: Duration(
+                                    milliseconds: ANIM_DURATION ~/ 5,
+                                  ),
+                                  opacity: _circleIconAlpha,
+                                  child: Icon(
+                                    activeIcon,
+                                    color: activeIconColor,
+                                    size: activeIconSize,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 }

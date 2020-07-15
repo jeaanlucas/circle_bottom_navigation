@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class HalfClipper extends CustomClipper<Rect> {
   @override
   Rect getClip(Size size) {
+    // ignore: omit_local_variable_types
     final Rect rect = Rect.fromLTWH(
       0,
       0,
@@ -13,7 +14,5 @@ class HalfClipper extends CustomClipper<Rect> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Rect> oldClipper) {
-    return true;
-  }
+  bool shouldReclip(CustomClipper<Rect> oldClipper) => true;
 }

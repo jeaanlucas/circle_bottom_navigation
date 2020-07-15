@@ -13,7 +13,7 @@ void main() {
         brightness: Brightness.light,
       ),
       home: Scaffold(
-        body: Center(),
+        body: const Center(),
         bottomNavigationBar: child,
       ),
     );

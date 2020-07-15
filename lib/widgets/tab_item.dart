@@ -38,80 +38,78 @@ class TabItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          title == null
-              ? Container()
-              : Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: AnimatedAlign(
-                    duration: Duration(
-                      milliseconds: ANIM_DURATION,
-                    ),
-                    alignment: Alignment(
-                      0,
-                      selected ? TEXT_ON : TEXT_OFF,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                        8.0,
+  Widget build(BuildContext context) => Expanded(
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            title == null
+                ? Container()
+                : Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: AnimatedAlign(
+                      duration: const Duration(
+                        milliseconds: ANIM_DURATION,
                       ),
-                      child: Text(
-                        title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontWeight: fontWeight,
-                          fontSize: fontSize,
-                          color: textColor,
+                      alignment: Alignment(
+                        0,
+                        selected ? TEXT_ON : TEXT_OFF,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                          8.0,
+                        ),
+                        child: Text(
+                          title,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontWeight: fontWeight,
+                            fontSize: fontSize,
+                            color: textColor,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: AnimatedAlign(
-              duration: Duration(
-                milliseconds: ANIM_DURATION,
-              ),
-              curve: Curves.easeIn,
-              alignment: Alignment(
-                0,
-                selected ? ICON_OFF : ICON_ON,
-              ),
-              child: AnimatedOpacity(
-                duration: Duration(
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: AnimatedAlign(
+                duration: const Duration(
                   milliseconds: ANIM_DURATION,
                 ),
-                opacity: selected ? ALPHA_OFF : ALPHA_ON,
-                child: IconButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  padding: EdgeInsets.all(
-                    0,
+                curve: Curves.easeIn,
+                alignment: Alignment(
+                  0,
+                  selected ? ICON_OFF : ICON_ON,
+                ),
+                child: AnimatedOpacity(
+                  duration: const Duration(
+                    milliseconds: ANIM_DURATION,
                   ),
-                  alignment: Alignment(
-                    0,
-                    0,
+                  opacity: selected ? ALPHA_OFF : ALPHA_ON,
+                  child: IconButton(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    padding: const EdgeInsets.all(
+                      0,
+                    ),
+                    alignment: const Alignment(
+                      0,
+                      0,
+                    ),
+                    icon: Icon(
+                      icon,
+                      color: iconColor,
+                      size: iconSize,
+                    ),
+                    onPressed: () => callbackFunction(uniqueKey),
                   ),
-                  icon: Icon(
-                    icon,
-                    color: iconColor,
-                    size: iconSize,
-                  ),
-                  onPressed: () => callbackFunction(uniqueKey),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }
