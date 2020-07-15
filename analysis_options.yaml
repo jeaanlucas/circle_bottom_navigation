@@ -19,10 +19,23 @@ linter:
     - avoid_print
     - avoid_return_types_on_setters
     - avoid_unused_constructor_parameters
-    - await_only_futures
     - prefer_single_quotes
     - unnecessary_new
     - unnecessary_parenthesis
+    - always_put_required_named_parameters_first
+    - avoid_init_to_null
+    - empty_catches
+    - unnecessary_brace_in_string_interps
+    - avoid_relative_lib_imports
+    - avoid_types_as_parameter_names
+    - prefer_final_locals
+    - file_names
+    - type_annotate_public_apis
+    - avoid_positional_boolean_parameters
+    - unnecessary_const
+    - unnecessary_overrides
+    - prefer_const_constructors
+    - prefer_const_declarations
 
 # analyzer:
 #   exlude:
