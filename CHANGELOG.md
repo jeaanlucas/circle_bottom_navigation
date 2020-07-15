@@ -1,3 +1,7 @@
+# [1.0.6] - Pontual adjustments.
+* Removed author from pubspec
+* Code adjustments in relation with analysis_options
+
 # [1.0.5] - Fix shadows.
 * Property hasElevationShadows fixed
 

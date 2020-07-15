@@ -2,16 +2,16 @@
 
 ![demo](https://media.giphy.com/media/joflEnk6kMGdAuObPT/giphy.gif)
 
-## Getting Started
+## Getting started
 Add the plugin:
 
 ```yaml
 dependencies:
   ...
-  circle_bottom_navigation: ^1.0.4
+  circle_bottom_navigation: ^1.0.6
 ```
 
-## Minimum Usage
+## Minimum usage
 ```dart
 bottomNavigationBar: CircleBottomNavigation(
   initialSelection: currentPage,
@@ -59,10 +59,10 @@ bottomNavigationBar: CircleBottomNavigation(
 **fontWeight** -> Weight of font in case of title has informed
 
 ## Example
-There is a example project in the `example` folder. Check it out.
+There is an example project in the `example` folder. Check it out.
 
 ## Showcase
 If you use this package in a live app, let me know and I'll add your app here. ;)
 
 ## Contributing
-Found a bug? Please, submit a PR!
+Found a bug? Please, open an issue and if you wanna help, do a PR :D
