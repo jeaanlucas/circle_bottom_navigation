@@ -24,6 +24,14 @@ class CircleBottomNavigation extends StatefulWidget {
   final bool hasElevationShadows;
   final double blurShadowRadius;
 
+  final double iconYAxisSpace;
+  final double textYAxisSpace;
+
+  final double itemIconOn;
+  final double itemIconOff;
+  final double itemTextOn;
+  final double itemTextOff;
+
   @override
   final Key key;
 
@@ -37,6 +45,12 @@ class CircleBottomNavigation extends StatefulWidget {
     this.inactiveIconColor,
     this.textColor,
     this.barBackgroundColor,
+    this.iconYAxisSpace = -0.5,
+    this.textYAxisSpace = 1,
+    this.itemIconOn = -1,
+    this.itemIconOff = -1,
+    this.itemTextOn = 0,
+    this.itemTextOff = 0,
     this.circleSize = 60.0,
     this.barHeight = 60.0,
     this.arcHeight = 70.0,
@@ -53,7 +67,8 @@ class CircleBottomNavigation extends StatefulWidget {
   _CircleBottomNavigationState createState() => _CircleBottomNavigationState();
 }
 
-class _CircleBottomNavigationState extends State<CircleBottomNavigation> with TickerProviderStateMixin, RouteAware {
+class _CircleBottomNavigationState extends State<CircleBottomNavigation>
+    with TickerProviderStateMixin, RouteAware {
   IconData nextIcon = Icons.search;
   IconData activeIcon = Icons.search;
 
@@ -76,19 +91,34 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
     activeIcon = widget.tabs[currentSelected].icon;
     activeIconSize = widget.tabs[currentSelected].iconSize ?? 30;
 
-    circleColor =
-        (widget.circleColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor : widget.circleColor;
+    circleColor = (widget.circleColor == null)
+        ? (Theme.of(context).brightness == Brightness.dark)
+            ? Colors.white
+            : Theme.of(context).primaryColor
+        : widget.circleColor;
 
-    activeIconColor =
-        (widget.activeIconColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white : widget.activeIconColor;
+    activeIconColor = (widget.activeIconColor == null)
+        ? (Theme.of(context).brightness == Brightness.dark)
+            ? Colors.black54
+            : Colors.white
+        : widget.activeIconColor;
 
-    barBackgroundColor =
-        (widget.barBackgroundColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.black54 : Colors.white : widget.barBackgroundColor;
+    barBackgroundColor = (widget.barBackgroundColor == null)
+        ? (Theme.of(context).brightness == Brightness.dark)
+            ? Colors.black54
+            : Colors.white
+        : widget.barBackgroundColor;
 
-    textColor = (widget.textColor == null) ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Colors.black54 : widget.textColor;
+    textColor = (widget.textColor == null)
+        ? (Theme.of(context).brightness == Brightness.dark)
+            ? Colors.white
+            : Colors.black54
+        : widget.textColor;
 
     inactiveIconColor = (widget.inactiveIconColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark) ? Colors.white : Theme.of(context).primaryColor
+        ? (Theme.of(context).brightness == Brightness.dark)
+            ? Colors.white
+            : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
   }
 
@@ -108,7 +138,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
   }
 
   void _setSelected(UniqueKey key) {
-    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected =
+        widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     if (mounted) {
       setState(() {
@@ -144,7 +175,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
   }
 
   void _callbackFunction(UniqueKey key) {
-    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected =
+        widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     widget.onTabChangedListener(selected);
     _setSelected(key);
@@ -185,17 +217,25 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                       title: tab.title,
                       iconColor: inactiveIconColor,
                       textColor: textColor,
+                      iconOn: widget.itemIconOn,
+                      iconOff: widget.itemIconOff,
+                      textOff: widget.itemTextOff,
+                      textOn: widget.itemTextOn,
                       iconSize: tab.iconSize,
                       fontSize: tab.fontSize,
                       fontWeight: tab.fontWeight,
-                      callbackFunction: (UniqueKey key) => _callbackFunction(key),
+                      callbackFunction: (UniqueKey key) =>
+                          _callbackFunction(key),
                     ),
                   )
                   .toList(),
             ),
           ),
           Positioned.fill(
-            top: -(widget.circleSize + widget.circleOutline + widget.shadowAllowance) / 2,
+            top: -(widget.circleSize +
+                    widget.circleOutline +
+                    widget.shadowAllowance) /
+                2,
             child: Container(
               child: AnimatedAlign(
                 duration: Duration(
@@ -203,7 +243,10 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                 ),
                 curve: Curves.easeOut,
                 alignment: Alignment(
-                  _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+                  _circleAlignX *
+                      (Directionality.of(context) == TextDirection.rtl
+                          ? -1
+                          : 1),
                   1,
                 ),
                 child: Padding(
@@ -215,18 +258,24 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                     child: GestureDetector(
                       onTap: widget.tabs[currentSelected].onClick,
                       child: Stack(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topCenter,
                         children: <Widget>[
                           SizedBox(
-                            height: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
-                            width: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
+                            height: widget.circleSize +
+                                widget.circleOutline +
+                                widget.shadowAllowance,
+                            width: widget.circleSize +
+                                widget.circleOutline +
+                                widget.shadowAllowance,
                             child: ClipRect(
                               clipper: HalfClipper(),
                               child: Container(
                                 child: Center(
                                   child: Container(
-                                    width: widget.circleSize + widget.circleOutline,
-                                    height: widget.circleSize + widget.circleOutline,
+                                    width: widget.circleSize +
+                                        widget.circleOutline,
+                                    height: widget.circleSize +
+                                        widget.circleOutline,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       shape: BoxShape.circle,
