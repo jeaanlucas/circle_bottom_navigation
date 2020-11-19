@@ -38,7 +38,7 @@ class CircleBottomNavigation extends StatefulWidget {
   CircleBottomNavigation({
     @required this.tabs,
     @required this.onTabChangedListener,
-    @required this.initialSelection,
+    this.initialSelection,
     this.key,
     this.circleColor,
     this.activeIconColor,
@@ -60,7 +60,6 @@ class CircleBottomNavigation extends StatefulWidget {
     this.hasElevationShadows = true,
     this.blurShadowRadius = 8.0,
   })  : assert(onTabChangedListener != null),
-        assert(initialSelection != null),
         assert(tabs != null);
 
   @override
@@ -72,7 +71,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   IconData nextIcon = Icons.search;
   IconData activeIcon = Icons.search;
 
-  int currentSelected = 0;
+  int currentSelected = -1;
   double _circleAlignX = 0;
   double _circleIconAlpha = 1;
 
@@ -88,8 +87,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    activeIcon = widget.tabs[currentSelected].icon;
-    activeIconSize = widget.tabs[currentSelected].iconSize ?? 30;
+    activeIcon = currentSelected >= 0 ? widget.tabs[currentSelected].icon : null;
+    activeIconSize = currentSelected >= 0 ? widget.tabs[currentSelected].iconSize ?? 30 : null;
 
     circleColor = (widget.circleColor == null)
         ? (Theme.of(context).brightness == Brightness.dark)
@@ -125,8 +124,9 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
   @override
   void initState() {
     super.initState();
-
-    _setSelected(widget.tabs[widget.initialSelection].key);
+    if(widget.initialSelection != null) {
+      _setSelected(widget.tabs[widget.initialSelection].key);
+    }
   }
 
   void setPage(int page) {
@@ -212,7 +212,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                   .map(
                     (TabData tab) => TabItem(
                       uniqueKey: tab.key,
-                      selected: tab.key == widget.tabs[currentSelected].key,
+                      selected: currentSelected >= 0 ? tab.key == widget.tabs[currentSelected].key : false,
                       icon: tab.icon,
                       title: tab.title,
                       iconColor: inactiveIconColor,
@@ -231,7 +231,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                   .toList(),
             ),
           ),
-          Positioned.fill(
+          currentSelected >= 0 ?
+            Positioned.fill(
             top: -(widget.circleSize +
                     widget.circleOutline +
                     widget.shadowAllowance) /
@@ -333,7 +334,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation>
                 ),
               ),
             ),
-          ),
+          ) : Container(),
         ],
       );
 }
