@@ -5,7 +5,7 @@ import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
 
 void main() {
   Widget makeWidget({
-    Widget child,
+    Widget? child,
   }) {
     return MaterialApp(
       theme: ThemeData(
@@ -58,7 +58,8 @@ void main() {
     expect(randomIconTabFinder, findsNothing);
   });
 
-  testWidgets('Test if clicking icon moves the circle', (WidgetTester tester) async {
+  testWidgets('Test if clicking icon moves the circle',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       makeWidget(
         child: _returnCircleNav(),
