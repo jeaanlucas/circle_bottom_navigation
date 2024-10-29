@@ -19,7 +19,7 @@ void main() {
     );
   }
 
-  Widget _returnCircleNav() {
+  Widget returnCircleNav() {
     return CircleBottomNavigation(
       initialSelection: 0,
       tabs: [
@@ -39,7 +39,7 @@ void main() {
   testWidgets('Test if circle has correct tabs', (WidgetTester tester) async {
     await tester.pumpWidget(
       makeWidget(
-        child: _returnCircleNav(),
+        child: returnCircleNav(),
       ),
     );
 
@@ -61,7 +61,7 @@ void main() {
   testWidgets('Test if clicking icon moves the circle', (WidgetTester tester) async {
     await tester.pumpWidget(
       makeWidget(
-        child: _returnCircleNav(),
+        child: returnCircleNav(),
       ),
     );
 

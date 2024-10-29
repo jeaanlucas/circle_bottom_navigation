@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-const double ICON_OFF = -3;
-const double ICON_ON = 0;
-const double TEXT_OFF = 3;
-const double TEXT_ON = 1;
-const double ALPHA_OFF = 0;
-const double ALPHA_ON = 1;
-const int ANIM_DURATION = 300;
+const double iconOff = -3;
+const double iconOn = 0;
+const double textOff = 3;
+const double textOn = 1;
+const double alphaOff = 0;
+const double alphaOn = 1;
+const int animationDuration = 300;
 
 class TabItem extends StatelessWidget {
   final UniqueKey uniqueKey;
@@ -20,17 +20,18 @@ class TabItem extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
 
-  final double iconYAlign = ICON_ON;
-  final double textYAlign = TEXT_OFF;
-  final double iconAlpha = ALPHA_ON;
+  final double iconYAlign = iconOn;
+  final double textYAlign = textOff;
+  final double iconAlpha = alphaOn;
 
-  TabItem({
+  const TabItem({
     required this.uniqueKey,
     required this.selected,
     required this.icon,
     required this.callbackFunction,
     required this.textColor,
     required this.iconColor,
+    super.key,
     this.title,
     this.iconSize = 30,
     this.fontSize = 12,
@@ -44,51 +45,57 @@ class TabItem extends StatelessWidget {
           children: <Widget>[
             title == null
                 ? Container()
-                : Container(
+                : SizedBox(
                     height: double.infinity,
                     width: double.infinity,
-                    child: AnimatedAlign(
+                    child: AnimatedOpacity(
                       duration: const Duration(
-                        milliseconds: ANIM_DURATION,
+                        milliseconds: animationDuration,
                       ),
-                      alignment: Alignment(
-                        0,
-                        selected ? TEXT_ON : TEXT_OFF,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(
-                          8.0,
+                      opacity: selected ? alphaOn : alphaOff,
+                      child: AnimatedAlign(
+                        duration: const Duration(
+                          milliseconds: animationDuration,
                         ),
-                        child: Text(
-                          title!,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontWeight: fontWeight,
-                            fontSize: fontSize,
-                            color: textColor,
+                        alignment: Alignment(
+                          0,
+                          selected ? textOn : textOff,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(
+                            8.0,
+                          ),
+                          child: Text(
+                            title!,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontWeight: fontWeight,
+                              fontSize: fontSize,
+                              color: textColor,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
               child: AnimatedAlign(
                 duration: const Duration(
-                  milliseconds: ANIM_DURATION,
+                  milliseconds: animationDuration,
                 ),
                 curve: Curves.easeIn,
                 alignment: Alignment(
                   0,
-                  selected ? ICON_OFF : ICON_ON,
+                  selected ? iconOff : iconOn,
                 ),
                 child: AnimatedOpacity(
                   duration: const Duration(
-                    milliseconds: ANIM_DURATION,
+                    milliseconds: animationDuration,
                   ),
-                  opacity: selected ? ALPHA_OFF : ALPHA_ON,
+                  opacity: selected ? alphaOff : alphaOn,
                   child: IconButton(
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
