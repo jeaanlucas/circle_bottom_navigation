@@ -91,7 +91,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
+        child: const Center(
           child: Text(
             'Home',
             style: TextStyle(
@@ -110,7 +110,7 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
+        child: const Center(
           child: Text(
             'History',
             style: TextStyle(
@@ -129,7 +129,7 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
+        child: const Center(
           child: Text(
             'Search',
             style: TextStyle(
@@ -148,7 +148,7 @@ class Alarm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(
+        child: const Center(
           child: Text(
             'Alarm ',
             style: TextStyle(

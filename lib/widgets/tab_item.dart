@@ -12,7 +12,7 @@ class TabItem extends StatelessWidget {
   final UniqueKey uniqueKey;
   final bool selected;
   final IconData icon;
-  final String title;
+  final String? title;
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
@@ -25,15 +25,15 @@ class TabItem extends StatelessWidget {
   final double iconAlpha = ALPHA_ON;
 
   TabItem({
-    @required this.uniqueKey,
-    @required this.selected,
-    @required this.icon,
-    @required this.callbackFunction,
-    @required this.textColor,
-    @required this.iconColor,
+    required this.uniqueKey,
+    required this.selected,
+    required this.icon,
+    required this.callbackFunction,
+    required this.textColor,
+    required this.iconColor,
     this.title,
-    this.iconSize,
-    this.fontSize,
+    this.iconSize = 30,
+    this.fontSize = 12,
     this.fontWeight = FontWeight.w600,
   });
 
@@ -60,7 +60,7 @@ class TabItem extends StatelessWidget {
                           8.0,
                         ),
                         child: Text(
-                          title,
+                          title!,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: TextStyle(
