@@ -12,21 +12,20 @@ class HalfPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // ignore: omit_local_variable_types
     final Rect beforeRect = Rect.fromLTWH(
       0,
       (size.height / 2) - 10,
       10,
       10,
     );
-    // ignore: omit_local_variable_types
+
     final Rect largeRect = Rect.fromLTWH(
       10,
       0,
       size.width - 20,
       70,
     );
-    // ignore: omit_local_variable_types
+
     final Rect afterRect = Rect.fromLTWH(
       size.width - 10,
       (size.height / 2) - 10,
@@ -34,7 +33,6 @@ class HalfPainter extends CustomPainter {
       10,
     );
 
-    // ignore: omit_local_variable_types
     final Path path = Path();
     path.arcTo(beforeRect, radians(0), radians(90), false);
     path.lineTo(20, size.height / 2);

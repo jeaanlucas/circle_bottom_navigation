@@ -1,3 +1,6 @@
+# [2.0.0] - Null safety enabled.
+* Refactored all the code and enabled null safety compatibility - Thanks for jacobaraujo7
+
 # [1.0.6] - Pontual adjustments.
 * Removed author from pubspec
 * Code adjustments in relation with analysis_options

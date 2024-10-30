@@ -30,10 +30,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
   final List<Widget> _pages = [
-    Home(),
-    History(),
-    Search(),
-    Alarm(),
+    _Home(),
+    _History(),
+    _Search(),
+    _Alarm(),
   ];
 
   @override
@@ -90,9 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
+class _Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +107,7 @@ class Home extends StatelessWidget {
   }
 }
 
-class History extends StatelessWidget {
-  const History({super.key});
-
+class _History extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,9 +124,7 @@ class History extends StatelessWidget {
   }
 }
 
-class Search extends StatelessWidget {
-  const Search({super.key});
-
+class _Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,9 +141,7 @@ class Search extends StatelessWidget {
   }
 }
 
-class Alarm extends StatelessWidget {
-  const Alarm({super.key});
-
+class _Alarm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

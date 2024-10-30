@@ -39,84 +39,83 @@ class TabItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Expanded(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            title == null
-                ? Container()
-                : SizedBox(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: AnimatedOpacity(
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          title == null
+              ? Container()
+              : SizedBox(
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: AnimatedOpacity(
+                    duration: const Duration(
+                      milliseconds: animationDuration,
+                    ),
+                    opacity: selected ? alphaOn : alphaOff,
+                    child: AnimatedAlign(
                       duration: const Duration(
                         milliseconds: animationDuration,
                       ),
-                      opacity: selected ? alphaOn : alphaOff,
-                      child: AnimatedAlign(
-                        duration: const Duration(
-                          milliseconds: animationDuration,
+                      alignment: Alignment(
+                        0,
+                        selected ? textOn : textOff,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                          8.0,
                         ),
-                        alignment: Alignment(
-                          0,
-                          selected ? textOn : textOff,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(
-                            8.0,
-                          ),
-                          child: Text(
-                            title!,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontWeight: fontWeight,
-                              fontSize: fontSize,
-                              color: textColor,
-                            ),
+                        child: Text(
+                          title!,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontWeight: fontWeight,
+                            fontSize: fontSize,
+                            color: textColor,
                           ),
                         ),
                       ),
                     ),
                   ),
-            SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: AnimatedAlign(
+                ),
+          SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: AnimatedAlign(
+              duration: const Duration(
+                milliseconds: animationDuration,
+              ),
+              curve: Curves.easeIn,
+              alignment: Alignment(
+                0,
+                selected ? iconOff : iconOn,
+              ),
+              child: AnimatedOpacity(
                 duration: const Duration(
                   milliseconds: animationDuration,
                 ),
-                curve: Curves.easeIn,
-                alignment: Alignment(
-                  0,
-                  selected ? iconOff : iconOn,
-                ),
-                child: AnimatedOpacity(
-                  duration: const Duration(
-                    milliseconds: animationDuration,
+                opacity: selected ? alphaOff : alphaOn,
+                child: IconButton(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  alignment: const Alignment(
+                    0,
+                    0,
                   ),
-                  opacity: selected ? alphaOff : alphaOn,
-                  child: IconButton(
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    padding: const EdgeInsets.all(
-                      0,
-                    ),
-                    alignment: const Alignment(
-                      0,
-                      0,
-                    ),
-                    icon: Icon(
-                      icon,
-                      color: iconColor,
-                      size: iconSize,
-                    ),
-                    onPressed: () => callbackFunction(uniqueKey),
+                  icon: Icon(
+                    icon,
+                    color: iconColor,
+                    size: iconSize,
                   ),
+                  onPressed: () => callbackFunction(uniqueKey),
                 ),
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 }

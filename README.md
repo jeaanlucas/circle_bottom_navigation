@@ -8,7 +8,7 @@ Add the plugin:
 ```yaml
 dependencies:
   ...
-  circle_bottom_navigation: ^1.0.6
+  circle_bottom_navigation: ^2.0.0
 ```
 
 ## Minimum usage

@@ -48,7 +48,8 @@ class CircleBottomNavigation extends StatefulWidget {
   State<CircleBottomNavigation> createState() => _CircleBottomNavigationState();
 }
 
-class _CircleBottomNavigationState extends State<CircleBottomNavigation> with TickerProviderStateMixin, RouteAware {
+class _CircleBottomNavigationState extends State<CircleBottomNavigation>
+    with TickerProviderStateMixin, RouteAware {
   IconData nextIcon = Icons.search;
   IconData activeIcon = Icons.search;
 
@@ -76,16 +77,18 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
 
     activeIconColor = widget.activeIconColor ?? theme.colorScheme.onPrimary;
 
-    barBackgroundColor = widget.barBackgroundColor ?? theme.colorScheme.primaryContainer;
-    textColor = widget.textColor ?? theme.textTheme.bodyLarge?.color ?? Colors.black;
+    barBackgroundColor =
+        widget.barBackgroundColor ?? theme.colorScheme.primaryContainer;
+    textColor =
+        widget.textColor ?? theme.textTheme.bodyLarge?.color ?? Colors.black;
 
-    inactiveIconColor = widget.inactiveIconColor ?? theme.colorScheme.onPrimary.withOpacity(0.5);
+    inactiveIconColor = widget.inactiveIconColor ??
+        theme.colorScheme.onPrimary.withOpacity(0.5);
   }
 
   @override
   void didUpdateWidget(covariant CircleBottomNavigation oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     _setSelected(widget.tabs[widget.initialSelection].key);
   }
 
@@ -104,7 +107,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
   }
 
   void _setSelected(UniqueKey key) {
-    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected =
+        widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     if (mounted) {
       setState(() {
@@ -140,7 +144,8 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
   }
 
   void _callbackFunction(UniqueKey key) {
-    final selected = widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
+    final selected =
+        widget.tabs.indexWhere((TabData tabData) => tabData.key == key);
 
     widget.onTabChangedListener(selected);
     _setSelected(key);
@@ -157,7 +162,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
           height: widget.barHeight,
           decoration: BoxDecoration(
             color: barBackgroundColor,
-            boxShadow: <BoxShadow>[
+            boxShadow: [
               widget.hasElevationShadows
                   ? BoxShadow(
                       color: Colors.black12,
@@ -192,14 +197,18 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
           ),
         ),
         Positioned.fill(
-          top: -(widget.circleSize + widget.circleOutline + widget.shadowAllowance) / 2,
+          top: -(widget.circleSize +
+                  widget.circleOutline +
+                  widget.shadowAllowance) /
+              2,
           child: AnimatedAlign(
             duration: const Duration(
               milliseconds: animationDuration,
             ),
             curve: Curves.easeOut,
             alignment: Alignment(
-              _circleAlignX * (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
+              _circleAlignX *
+                  (Directionality.of(context) == TextDirection.rtl ? -1 : 1),
               1,
             ),
             child: Padding(
@@ -212,10 +221,14 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                   onTap: widget.tabs[currentSelected].onClick,
                   child: Stack(
                     alignment: Alignment.center,
-                    children: <Widget>[
+                    children: [
                       SizedBox(
-                        height: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
-                        width: widget.circleSize + widget.circleOutline + widget.shadowAllowance,
+                        height: widget.circleSize +
+                            widget.circleOutline +
+                            widget.shadowAllowance,
+                        width: widget.circleSize +
+                            widget.circleOutline +
+                            widget.shadowAllowance,
                         child: ClipRect(
                           clipper: HalfClipper(),
                           child: Center(
@@ -225,7 +238,7 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                               decoration: BoxDecoration(
                                 color: barBackgroundColor,
                                 shape: BoxShape.circle,
-                                boxShadow: <BoxShadow>[
+                                boxShadow: [
                                   const BoxShadow(
                                     color: Colors.black12,
                                     blurRadius: 8,
@@ -253,20 +266,15 @@ class _CircleBottomNavigationState extends State<CircleBottomNavigation> with Ti
                             shape: BoxShape.circle,
                             color: circleColor,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(
-                              0.0,
+                          child: AnimatedOpacity(
+                            duration: const Duration(
+                              milliseconds: animationDuration ~/ 5,
                             ),
-                            child: AnimatedOpacity(
-                              duration: const Duration(
-                                milliseconds: animationDuration ~/ 5,
-                              ),
-                              opacity: _circleIconAlpha,
-                              child: Icon(
-                                activeIcon,
-                                color: activeIconColor,
-                                size: activeIconSize,
-                              ),
+                            opacity: _circleIconAlpha,
+                            child: Icon(
+                              activeIcon,
+                              color: activeIconColor,
+                              size: activeIconSize,
                             ),
                           ),
                         ),
